@@ -219,7 +219,8 @@ mha_fwd(at::Tensor &q,         // batch_size x seqlen_q x num_heads x (head_size
     auto dprops = at::cuda::getCurrentDeviceProperties();
     bool is_sm120 = dprops->major == 12 && dprops->minor == 0;
     bool is_sm121 = dprops->major == 12 && dprops->minor == 1;
-    TORCH_CHECK(is_sm120 || is_sm121, "only supports Blackwell GPUs or newer.");
+    bool is_sm103 = dprops->major == 10 && dprops->minor == 3;
+    TORCH_CHECK(is_sm120 || is_sm121 || is_sm103, "only supports Blackwell GPUs or newer.");
 
     auto q_dtype = q.dtype();
     auto sfq_dtype = sfq.dtype();

@@ -63,6 +63,9 @@ if not SKIP_CUDA_BUILD:
     if (cc_major, cc_minor) == (10, 0):  # sm_100
         cc_flag.append("-gencode")
         cc_flag.append("arch=compute_100a,code=sm_100a")
+    elif (cc_major, cc_minor) == (10, 3):  # sm_103
+        cc_flag.append("-gencode")
+        cc_flag.append("arch=compute_103a,code=sm_103a")
     elif (cc_major, cc_minor) == (12, 0):  # sm_120
         cc_flag.append("-gencode")
         cc_flag.append("arch=compute_120a,code=sm_120a")
